@@ -10,7 +10,7 @@ sys.path.insert(0, str(ROOT / "backend"))
 
 os.environ.setdefault("DATABASE_URL", f"sqlite:///{ROOT / 'work' / 'test_predictions.db'}")
 
-from app.main import SensorInput, app, health, predict
+from app.main import SensorInput, app, health, normalize_database_url, predict
 
 client = TestClient(app)
 
@@ -50,3 +50,8 @@ def test_invalid_machine_type_is_rejected():
 def test_empty_batch_is_rejected():
     response = client.post("/predict/batch", json=[])
     assert response.status_code == 422
+
+
+def test_render_postgres_url_uses_psycopg3_driver():
+    assert normalize_database_url("postgresql://user:pass@db:5432/app") == "postgresql+psycopg://user:pass@db:5432/app"
+    assert normalize_database_url("sqlite:///local.db") == "sqlite:///local.db"

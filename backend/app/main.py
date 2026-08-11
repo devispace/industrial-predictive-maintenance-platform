@@ -17,7 +17,15 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column
 
 ROOT = Path(__file__).resolve().parents[2]
 MODEL_PATH = Path(os.getenv("MODEL_PATH", ROOT / "outputs" / "phase1" / "random_forest_balanced.joblib"))
-DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{ROOT / 'work' / 'predictions.db'}")
+
+
+def normalize_database_url(url: str) -> str:
+    if url.startswith("postgresql://"):
+        return url.replace("postgresql://", "postgresql+psycopg://", 1)
+    return url
+
+
+DATABASE_URL = normalize_database_url(os.getenv("DATABASE_URL", f"sqlite:///{ROOT / 'work' / 'predictions.db'}"))
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 engine = create_engine(DATABASE_URL, connect_args=connect_args)
 
