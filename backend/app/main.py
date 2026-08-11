@@ -10,6 +10,7 @@ import joblib
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from sqlalchemy import Boolean, DateTime, Float, Integer, String, create_engine, func, select
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column
@@ -132,3 +133,8 @@ def predict_batch(items: list[SensorInput]) -> list[PredictionResponse]:
         session.add_all(records)
         session.commit()
     return results
+
+
+STATIC_DIR = ROOT / "frontend" / "dist"
+if STATIC_DIR.exists():
+    app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="dashboard")
