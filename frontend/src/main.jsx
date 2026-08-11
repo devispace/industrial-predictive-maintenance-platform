@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './style.css';
 
 const sample = {'Type':'M','Air temperature [K]':300.1,'Process temperature [K]':310.2,'Rotational speed [rpm]':1500,'Torque [Nm]':42,'Tool wear [min]':180};
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
 
 function App() {
   const [metrics, setMetrics] = useState({predictions_total: 0, alerts_total: 0});

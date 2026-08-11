@@ -70,6 +70,14 @@ $env:POSTGRES_PORT="15433"
 docker compose up -d --build
 ```
 
+## 公网部署
+
+仓库包含 `render.yaml`，可在 Render 中一次创建同源 React/FastAPI Web Service 与 PostgreSQL：
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/devispace/industrial-predictive-maintenance-platform)
+
+公网 Docker 镜像会把 React production build 嵌入 FastAPI，因此页面和 API 使用同一域名；数据库连接由 Blueprint 从 Render Postgres 注入，不在仓库保存凭证。免费 Web Service 闲置后会冷启动，免费 PostgreSQL 仅保留 30 天，适合招聘演示而非生产。
+
 ## 本地开发
 
 ```powershell
