@@ -1,5 +1,6 @@
 work/data/
 work/.python-packages/
+work/.security-tools/
 work/.venv/
 work/*.db
 __pycache__/

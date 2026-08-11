@@ -25,7 +25,7 @@ def test_prediction_contract():
     result = predict(item)
     assert 0 <= result.probability <= 1
     assert result.threshold == pytest.approx(0.335)
-    assert result.action
+    assert result.action in {"继续监测", "人工确认告警；不执行自动停机"}
 
 
 def test_http_prediction_and_cors_contract():
