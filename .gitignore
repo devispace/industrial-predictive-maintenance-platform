@@ -1,0 +1,13 @@
+work/data/
+work/.python-packages/
+work/.venv/
+work/*.db
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+outputs/phase1/models/
+outputs/phase1/figures/
+.DS_Store
+frontend/node_modules/
+frontend/dist/

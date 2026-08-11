@@ -1,0 +1,37 @@
+{
+  "sample_size": 1000,
+  "top_features": [
+    {
+      "feature": "num__Torque [Nm]",
+      "mean_abs_shap": 0.16496664472106345
+    },
+    {
+      "feature": "num__Rotational speed [rpm]",
+      "mean_abs_shap": 0.13467912625431255
+    },
+    {
+      "feature": "num__Tool wear [min]",
+      "mean_abs_shap": 0.09956402160115282
+    },
+    {
+      "feature": "num__Air temperature [K]",
+      "mean_abs_shap": 0.07264561272229826
+    },
+    {
+      "feature": "num__Process temperature [K]",
+      "mean_abs_shap": 0.03598993453601368
+    },
+    {
+      "feature": "cat__Type_L",
+      "mean_abs_shap": 0.01132552124441487
+    },
+    {
+      "feature": "cat__Type_M",
+      "mean_abs_shap": 0.005787502126773559
+    },
+    {
+      "feature": "cat__Type_H",
+      "mean_abs_shap": 0.0024496672226879046
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "threshold": 0.33499999999999996,
+  "test_rows": 1500,
+  "true_negative": 1424,
+  "false_positive": 25,
+  "false_negative": 13,
+  "true_positive": 38,
+  "false_negative_rate": 0.2549019607843137,
+  "false_discovery_rate": 0.3968253968253968,
+  "pr_auc": 0.7475784366188053
+}

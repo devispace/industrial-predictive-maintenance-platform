@@ -1,0 +1,34 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python scripts/run_phase1.py
+      - run: python scripts/analyze_model.py
+      - run: python scripts/explain_model.py
+      - run: pytest tests -q
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.16.0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - run: pnpm --dir frontend install --frozen-lockfile
+      - run: pnpm --dir frontend run build
+      - run: docker compose config
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reproducibility-evidence
+          path: |
+            outputs/phase1/*.json
+            outputs/phase1/*.csv
+            outputs/phase1/*.png
+            frontend/dist
