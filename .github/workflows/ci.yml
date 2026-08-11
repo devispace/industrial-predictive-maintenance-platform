@@ -24,7 +24,7 @@ jobs:
       - run: pnpm --dir frontend install --frozen-lockfile
       - run: pnpm --dir frontend run build
       - run: docker compose config
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: reproducibility-evidence
           path: |
